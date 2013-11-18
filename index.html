@@ -8,7 +8,10 @@
     <meta property="og:image" content="http://static.openstates.org/assets/v3.1/images/fbshare.jpg">
     <meta property="og:site_name" content="Open States">
     <script>var _sf_startpt=(new Date()).getTime()</script>
+		<!--
     <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/main.css?withbanner" />
+		-->
+    <link rel="stylesheet" type="text/css" href="assets/main.css" />
     <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/select2-2.0/select2.css"/>
 
     <script src="http://static.openstates.org/assets/v3.1/js/jquery-1.9.0.min.js"></script>
@@ -145,18 +148,23 @@ $(document).ready(function() {
                 }
         });
     }
+		<!-- FRED: CURRENT PROGRESS -->
     $('#find_your_leg').submit(function(e){
         e.preventDefault();
         GMaps.geocode({
             address: $('#leg_search').val().trim(),
             callback: function(results, status){
                 if ( status == 'OK' ){
+			  						alert("status ok");
                     /* We've got a lat/lon, let's call the render */
                     var  latlng = results[0].geometry.location,
                             lat = latlng.lat(),
                             lon = latlng.lng();
                     do_geo_locate(lat, lon);
                 }
+								else{
+			  					alert(status);
+								}
             }
         });
     });
@@ -215,6 +223,7 @@ $(document).ready(function() {
     <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
     <![endif]-->
 
+<!--
     <div id="donor_banner" class="minimize-donorbanner">
         <div class="donorcontainer">
             <div class="bubble">
@@ -238,6 +247,7 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
+-->
 
     <div class="hatWrap">
             <div class="contentWrapper">
