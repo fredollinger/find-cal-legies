@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <title>Find Your State Legislator - Open States</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Find out who represents you in your state capital.">
+    <meta property="og:type" content="cause">
+    <meta property="og:image" content="http://static.openstates.org/assets/v3.1/images/fbshare.jpg">
+    <meta property="og:site_name" content="Open States">
+    <script>var _sf_startpt=(new Date()).getTime()</script>
+    <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/main.css?withbanner" />
+    <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/select2-2.0/select2.css"/>
+
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery-1.9.0.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery.hotkeys.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/select2-2.0/select2.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/main.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/xau7dem.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery.calendar-widget.js"></script>
+    <script src="https://s3.amazonaws.com/assets.sunlightfoundation.com/social/scripts/simple-socialite-pack.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/donorbanner.js"></script>
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/ie8.css"/>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery-placehold.min.js"></script>
+    <script>
+     // add placeholders
+     $("input, textarea").placehold();
+    </script>
+    <![endif]-->
+    
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="http://static.openstates.org/assets/v3.1/js/gmaps.js"></script>
+<script>
+$(document).ready(function() {
+    var map,
+        needs_update = true;
+        overlays   = [],
+        chambers = { /* These colors will be used to fill and outline the
+                        gmap for the districts. */
+            "lower": {
+                "stroke": "#817C78",
+                "fill": "#D4EAE8"
+            },
+            "upper": {
+                "stroke": "#817C78",
+                "fill": "#DEE6BF"
+            },
+            "joint": {
+                "stroke": "#817C78",
+                "fill": "#DBEBE1"
+            }
+        };
+    map = new GMaps({
+        div: '#map',
+        lat: 38,
+        lng: -97,
+        zoom: 3
+    });
+    function do_geo_locate(lat, lon) {
+        /* This is invoked when we want to re-draw the map. We get here either
+           from the "submit" button, or clicking on the href with an overloaded
+           click event. */
+        var url = '/find_your_legislator/?lat=' +
+               lat +
+               '&lon=' +
+               lon;
+        /* This is a big operation. Kicking it off, since it's async */
+        $.getJSON(url + "&boundary=y", function(data) {
+            for ( var i in overlays ) {
+                map.removeOverlay(overlays[i]);
+            }
+            overlays = [];
+            for ( var i in data ) {
+                var bdry = data[i],
+                    polygon;
+                for ( var n in bdry.shape ) {
+                    for ( var j in bdry.shape[n] ) {
+                        var bak_shape = bdry.shape[n][j],
+                            shape = [],
+                            lay = chambers[bdry['chamber']];
+                        for ( var node in bak_shape ) {
+                            node = bak_shape[node];
+                            shape.push([node[1], node[0]]);
+                        }
+                        polygon = map.drawPolygon({
+                            paths:         shape,
+                            strokeColor:   lay['stroke'],
+                            strokeOpacity: 1,
+                            strokeWeight:  3,
+                            fillColor:     lay['fill'],
+                            fillOpacity:   0.5
+                            });
+                        overlays.push(polygon);
+                    }
+                }
+            }
+            map.removeMarkers();
+            map.addMarker({
+                lat: lat,
+                lng: lon,
+                draggable: true,
+                fences: overlays,
+                outside: function(marker, fence) {
+                    var latlon = marker.position,
+                           lat = latlon.lat(),
+                           lon = latlon.lng();
+
+                    if ( ! needs_update ) {
+                        needs_update = true;
+                        do_geo_locate(lat, lon);
+                    }
+                },
+                click: function() {
+                    /* If the user clicks, let's recenter kindly. */
+                    map.setCenter(
+                        lat,
+                        lon
+                    );
+                }
+            });
+            needs_update = false;
+        });
+
+        /* Before we dispatch our request, we've already
+           geo-located. Let's center first. */
+        map.setZoom(12);
+        map.setCenter(
+            lat,
+            lon
+        );
+        /* XXX: This is to remove all the other markers. Perhaps one day we
+                can find a way to mark all searched locations w/ results. */
+
+        $("#results_table").html("<center>Loading....</center>")
+        $("#results_table").load(url, function() {
+            for ( var i in chambers ) {
+                /* Colorize the results on the district table - it helps
+                   make who is which district more clear. We need a solution
+                   for more then one legislator for a chamber */
+                var chamber = chambers[i];
+                $(".chamber-" + i).css("background-color", chamber.fill);
+                }
+        });
+    }
+    $('#find_your_leg').submit(function(e){
+        e.preventDefault();
+        GMaps.geocode({
+            address: $('#leg_search').val().trim(),
+            callback: function(results, status){
+                if ( status == 'OK' ){
+                    /* We've got a lat/lon, let's call the render */
+                    var  latlng = results[0].geometry.location,
+                            lat = latlng.lat(),
+                            lon = latlng.lng();
+                    do_geo_locate(lat, lon);
+                }
+            }
+        });
+    });
+    GMaps.geolocate({
+        success: function(position) {
+            $("#do_geo_locate").click(function() {
+                do_geo_locate(position.coords.latitude,
+                    position.coords.longitude);
+                return false;
+            });
+        },
+        error: function(error) {
+            /* $("#communicate").append("<p class = 'find_your_legislator_errorbox' >" +
+            "We were not able to guess your location. Please enter in your details."+
+            "</p>"); */
+        }
+    });
+    if ( $("#_request").val().trim() != "" ) {
+        /* Auto-submit if we've got something in there (?q= param) */
+        $('#find_your_leg').submit();
+    }
+});
+    </script>
+
+
+    <script>
+      /* google analytics async */
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1265484-77']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <script>
+      var feedback_widget_options = {};
+      feedback_widget_options.display = "overlay";
+      feedback_widget_options.company = "sunlightfoundation";
+      feedback_widget_options.placement = "right";
+      feedback_widget_options.color = "#222";
+      feedback_widget_options.style = "question";
+      var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+    </script>
+
+</head>
+
+<body
+    class=""
+    id="">
+    <!--[if lt IE 9]>
+    <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+    <![endif]-->
+
+    <div id="donor_banner" class="minimize-donorbanner">
+        <div class="donorcontainer">
+            <div class="bubble">
+                <button value="play" href="" class="notnow toggleButton">Not now</button>
+            </div>
+            <a class="sf_logo" href="http://sunlightfoundation.com">Sunlight Foundation</a>
+            <p class="because">
+                Open States helps you stay connected to your state capitol. Now, you can help Sunlight continue to support and improve Open States along with other open gov projects like it.
+            </p>
+            <div class="donationplea">
+                <h2>
+                    <span class="line1">We depend </span>
+                    <span class="line2">on the generosity</span>
+                    <span class="line3">of our supporters</span>
+                </h2>
+                <p>
+                    <em>Ensure that this invaluable resource flourishes:</em>
+                    </br>donate to the Sunlight Foundation today!
+                </p>
+                <a class="btn" href="https://services.myngp.com/ngponlineservices/contribution.aspx?X=n2TMpep7%2bsHxgHfqyVid%2fxPIXpCHBOeRfMNP%2f5DFQtJ%2bpDexwJrjfg%3d%3d">Donate</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="hatWrap">
+            <div class="contentWrapper">
+                <a href="http://www.sunlightfoundation.com" class="productOf">
+                        a product of Sunlight Foundation
+                </a>
+            </div>
+     </div>
+
+    <header id="mainHeader">
+        <div id="login" class="tip">
+            
+                <a href="/login/sunlight/?next=">Login or Sign up</a>
+            
+        </div>
+        <form action="/all/search/" method="get" id="searchform">
+            <input class="transparent search" type="search" name="search_text" id="id_q" placeholder="  Search for bills or legislators across all states  ">
+            <button type="submit">
+                <span>Search</span>
+            </button>
+        </form>
+        <h1 class="clearfix"><a class="textReplace" href="/">Open States</a></h1>
+
+        <div class="share-buttons" data-socialite="auto"  
+            data-services="twitter,facebook"> </div>
+
+        
+        <form action="/region_selection/" method="get" id="mainFilter" class="clearfix">
+    <select name="abbr" id="id_abbr">
+<option value="" selected="selected"></option>
+<option value="al">Alabama</option>
+<option value="ak">Alaska</option>
+<option value="az">Arizona</option>
+<option value="ar">Arkansas</option>
+<option value="ca">California</option>
+<option value="co">Colorado</option>
+<option value="ct">Connecticut</option>
+<option value="de">Delaware</option>
+<option value="dc">District of Columbia</option>
+<option value="fl">Florida</option>
+<option value="ga">Georgia</option>
+<option value="hi">Hawaii</option>
+<option value="id">Idaho</option>
+<option value="il">Illinois</option>
+<option value="in">Indiana</option>
+<option value="ia">Iowa</option>
+<option value="ks">Kansas</option>
+<option value="ky">Kentucky</option>
+<option value="la">Louisiana</option>
+<option value="me">Maine</option>
+<option value="md">Maryland</option>
+<option value="ma">Massachusetts</option>
+<option value="mi">Michigan</option>
+<option value="mn">Minnesota</option>
+<option value="ms">Mississippi</option>
+<option value="mo">Missouri</option>
+<option value="mt">Montana</option>
+<option value="ne">Nebraska</option>
+<option value="nv">Nevada</option>
+<option value="nh">New Hampshire</option>
+<option value="nj">New Jersey</option>
+<option value="nm">New Mexico</option>
+<option value="ny">New York</option>
+<option value="nc">North Carolina</option>
+<option value="nd">North Dakota</option>
+<option value="oh">Ohio</option>
+<option value="ok">Oklahoma</option>
+<option value="or">Oregon</option>
+<option value="pa">Pennsylvania</option>
+<option value="pr">Puerto Rico</option>
+<option value="ri">Rhode Island</option>
+<option value="sc">South Carolina</option>
+<option value="sd">South Dakota</option>
+<option value="tn">Tennessee</option>
+<option value="tx">Texas</option>
+<option value="ut">Utah</option>
+<option value="vt">Vermont</option>
+<option value="va">Virginia</option>
+<option value="wa">Washington</option>
+<option value="wv">West Virginia</option>
+<option value="wi">Wisconsin</option>
+<option value="wy">Wyoming</option>
+</select>
+    <input id="state_select_submit" type="submit"/>
+</form>
+
+        
+
+    </header>
+
+
+
+
+
+    <div id="container">
+
+
+
+    <input type="hidden" value="" id="_request" />
+    <div id="container">
+        <div class="medModule clearfix">
+            <h2>Find your legislator</h2>
+            <div class="colLt sixCol">
+                <div id="notify">
+                    <form id="find_your_leg">
+                        <label class="h5">Enter your address:</label>
+                        <input type="text" name="leg_search" id="leg_search"
+                            placeholder="example: 1818 N St. NW Washington, DC"
+                            value=""></input>
+                            <button type="submit" value="Submit">
+                            <span>Submit</span>
+                        </button>
+                    </form>
+                    <div class="clear"></div>
+                    <div id="communicate"></div>
+                </div>
+            </div>
+
+            <div class="colRt sixCol" id="locate">
+                <p class="h5">Use your current location</p>
+                <button id="do_geo_locate"
+                    type="submit" value="Submit">
+                <span>Submit</span>
+            </button>
+            </div>
+        </div>
+        <div class="sixCol colLt withDash legMap">
+            <div id="map"></div>
+        </div>
+        <div class="sixCol colRt">
+            <div  id="results_table">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+
+    </div>
+
+    <div id="footerWrapper">
+        <footer>
+            <div id="footerLt">
+                <a class="textReplace" id="sunlight" href="http://www.sunlightfoundation.com">Sunlight Foundation</a>
+                <p>Our <a href="http://sunlightfoundation.com/legal/privacy/">privacy policy</a> details how personally identifiable information that is collected on our websites is handled. Read our <a href="http://sunlightfoundation.com/legal/terms/">terms of service</a>.</p>
+                <p>This work by <a href="http://sunlightfoundation.com">Sunlight Foundation</a>, unless <a href="/about/">otherwise noted</a>, is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.</p>
+            </div>
+            <div id="footerRt">
+                <div id="recources">
+                    <h4 class="footerheaders">Resources </h4>
+                    <dl class="inlineList">
+                        <dt class="clear">Reach Out to Us:</dt>
+                        <dd>
+                            <ul>
+                                <li><a href="/about/">About Open States</a></li>
+                               <li><a href="/contact/">Contact Us</a></li>
+                               <li><a href="https://twitter.com/openstates">@openstates</a></li>
+                            </ul>
+                        </dd>
+                        <dt>Use Our Data:</dt>
+                        <dd>
+                            <ul>
+                                <li><a href="http://sunlightlabs.github.io/openstates-api/">API</a></li>
+                                <li><a href="/downloads/">Bulk Downloads</a></li>
+                                <li><a href="http://python-sunlight.readthedocs.org/">Python Client Library</a></li>
+                                <li><a href="http://code.google.com/p/openstates/issues/list">Issue Tracker</a></li>
+                            </ul>
+                        </dd>
+                        <dt class="clear">Contribute:</dt>
+                        <dd>
+                            <ul>
+                                <li><a href="/contributing/">Contributor&rsquo;s Guide</a></li>
+                                <li><a href="http://github.com/sunlightlabs/openstates/">Code on GitHub</a></li>
+                                <li><a href="http://readthedocs.org/docs/billy/en/latest/scrapers.html">Writing Scrapers</a></li>
+                            </ul>
+                        </dd>
+
+
+                    </dl>
+                </div>
+                <h4 class="withTip footerheaders noCap">Like This Project and Want to Discover Others Like It?</h4>
+                <span class="tip">Join the Sunlight Foundation&rsquo;s open government community to learn more</span>
+                <form action="http://organizing.sunlightfoundation.com/page/s/open-states" method="post" id="submit">
+                    <input type="text" name="email" placeholder="your email address">
+                    <input type="text" name="zip" placeholder="your zip code">
+                    <button type="submit">
+                        <span>SignUp</span>
+                    </button>
+                </form>
+            </div>
+        </footer>
+    </div>
+
+<script>
+  /* chartbeat */
+  var _sf_async_config = { uid: 980, domain: 'openstates.org' };
+  (function() {
+    function loadChartbeat() {
+      window._sf_endpt = (new Date()).getTime();
+      var e = document.createElement('script');
+      e.setAttribute('language', 'javascript');
+      e.setAttribute('type', 'text/javascript');
+      e.setAttribute('src',
+        (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+        "js/chartbeat.js");
+      document.body.appendChild(e);
+    };
+    var oldonload = window.onload;
+    window.onload = (typeof window.onload != 'function') ?
+      loadChartbeat : function() { oldonload(); loadChartbeat(); };
+  })();
+</script>
+</body>
