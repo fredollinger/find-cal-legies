@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <title>California State Legislature - Open States</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="California State Legislature: Keep up to date with bills, legislators, votes, committees and events. ">
+    <meta property="og:type" content="cause">
+    <meta property="og:image" content="http://static.openstates.org/assets/v3.1/images/fbshare.jpg">
+    <meta property="og:site_name" content="Open States">
+    <script>var _sf_startpt=(new Date()).getTime()</script>
+    <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/main.css?withbanner" />
+    <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/select2-2.0/select2.css"/>
+
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery-1.9.0.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery.hotkeys.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/select2-2.0/select2.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/main.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/xau7dem.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery.calendar-widget.js"></script>
+    <script src="https://s3.amazonaws.com/assets.sunlightfoundation.com/social/scripts/simple-socialite-pack.min.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/donorbanner.js"></script>
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="http://static.openstates.org/assets/v3.1/ie8.css"/>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://static.openstates.org/assets/v3.1/js/jquery-placehold.min.js"></script>
+    <script>
+     // add placeholders
+     $("input, textarea").placehold();
+    </script>
+    <![endif]-->
+    
+<link rel="canonical" href="/ca/">
+<link rel="stylesheet" href="http://static.openstates.org/assets/v3.1/maps/leaflet.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="http://static.openstates.org/assets/v3.1/maps/leaflet.ie.css" /><![endif]-->
+<script src="http://static.openstates.org/assets/v3.1/maps/leaflet.js"></script>
+<script src="http://static.openstates.org/assets/v3.1/maps/wax.leaf.min.js"></script>
+
+
+    <script>
+      /* google analytics async */
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1265484-77']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <script>
+      var feedback_widget_options = {};
+      feedback_widget_options.display = "overlay";
+      feedback_widget_options.company = "sunlightfoundation";
+      feedback_widget_options.placement = "right";
+      feedback_widget_options.color = "#222";
+      feedback_widget_options.style = "question";
+      var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+    </script>
+
+</head>
+
+<body
+    class=""
+    id="">
+    <!--[if lt IE 9]>
+    <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+    <![endif]-->
+
+<!--
+    <div id="donor_banner" class="minimize-donorbanner">
+        <div class="donorcontainer">
+            <div class="bubble">
+                <button value="play" href="" class="notnow toggleButton">Not now</button>
+            </div>
+            <a class="sf_logo" href="http://sunlightfoundation.com">Sunlight Foundation</a>
+            <p class="because">
+                Open States helps you stay connected to your state capitol. Now, you can help Sunlight continue to support and improve Open States along with other open gov projects like it.
+            </p>
+            <div class="donationplea">
+                <h2>
+                    <span class="line1">We depend </span>
+                    <span class="line2">on the generosity</span>
+                    <span class="line3">of our supporters</span>
+                </h2>
+                <p>
+                    <em>Ensure that this invaluable resource flourishes:</em>
+                    </br>donate to the Sunlight Foundation today!
+                </p>
+                <a class="btn" href="https://services.myngp.com/ngponlineservices/contribution.aspx?X=n2TMpep7%2bsHxgHfqyVid%2fxPIXpCHBOeRfMNP%2f5DFQtJ%2bpDexwJrjfg%3d%3d">Donate</a>
+            </div>
+        </div>
+    </div>
+-->
+
+    <div class="hatWrap">
+            <div class="contentWrapper">
+                <a href="http://www.sunlightfoundation.com" class="productOf">
+                        a product of Sunlight Foundation
+                </a>
+            </div>
+     </div>
+
+    <header id="mainHeader">
+        <div id="login" class="tip">
+            
+                <a href="/login/sunlight/?next=/ca/">Login or Sign up</a>
+            
+        </div>
+        <form action="/ca/search/" method="get" id="searchform">
+            <input class="transparent search" type="search" name="search_text" id="id_q" placeholder="  Search California for bills or legislators  ">
+            <button type="submit">
+                <span>Search</span>
+            </button>
+        </form>
+        <h1 class="clearfix"><a class="textReplace" href="/">Open States</a></h1>
+
+        <div class="share-buttons" data-socialite="auto"  
+            data-services="twitter,facebook"> </div>
+
+        
+        <form action="/region_selection/" method="get" id="mainFilter" class="clearfix">
+    <select name="abbr" id="id_abbr">
+<option value=""></option>
+<option value="al">Alabama</option>
+<option value="ak">Alaska</option>
+<option value="az">Arizona</option>
+<option value="ar">Arkansas</option>
+<option value="ca" selected="selected">California</option>
+<option value="co">Colorado</option>
+<option value="ct">Connecticut</option>
+<option value="de">Delaware</option>
+<option value="dc">District of Columbia</option>
+<option value="fl">Florida</option>
+<option value="ga">Georgia</option>
+<option value="hi">Hawaii</option>
+<option value="id">Idaho</option>
+<option value="il">Illinois</option>
+<option value="in">Indiana</option>
+<option value="ia">Iowa</option>
+<option value="ks">Kansas</option>
+<option value="ky">Kentucky</option>
+<option value="la">Louisiana</option>
+<option value="me">Maine</option>
+<option value="md">Maryland</option>
+<option value="ma">Massachusetts</option>
+<option value="mi">Michigan</option>
+<option value="mn">Minnesota</option>
+<option value="ms">Mississippi</option>
+<option value="mo">Missouri</option>
+<option value="mt">Montana</option>
+<option value="ne">Nebraska</option>
+<option value="nv">Nevada</option>
+<option value="nh">New Hampshire</option>
+<option value="nj">New Jersey</option>
+<option value="nm">New Mexico</option>
+<option value="ny">New York</option>
+<option value="nc">North Carolina</option>
+<option value="nd">North Dakota</option>
+<option value="oh">Ohio</option>
+<option value="ok">Oklahoma</option>
+<option value="or">Oregon</option>
+<option value="pa">Pennsylvania</option>
+<option value="pr">Puerto Rico</option>
+<option value="ri">Rhode Island</option>
+<option value="sc">South Carolina</option>
+<option value="sd">South Dakota</option>
+<option value="tn">Tennessee</option>
+<option value="tx">Texas</option>
+<option value="ut">Utah</option>
+<option value="vt">Vermont</option>
+<option value="va">Virginia</option>
+<option value="wa">Washington</option>
+<option value="wv">West Virginia</option>
+<option value="wi">Wisconsin</option>
+<option value="wy">Wyoming</option>
+</select>
+    <input id="state_select_submit" type="submit"/>
+</form>
+
+        
+        
+        <nav class="clearfix">
+            <ul>
+                <li class="active"><a href="/ca/">Overview</a></li>
+                <li ><a href="/ca/legislators/">Legislators</a></li>
+                <li ><a href="/ca/bills/">Bills</a></li>
+                <li ><a href="/ca/committees/">Committees</a></li>
+                
+            </ul>
+        </nav>
+        
+        
+
+    </header>
+
+
+
+
+
+    <div id="container">
+
+
+
+    <div class="fullWidth">
+        <div id="stateimg-ca" class="stateTitle">
+            <h2 class="withTip">California State Legislature</h2>
+            <p></p>
+        </div>
+    </div>
+
+    <div class="fullWidth module clear">
+        <h3 class="moduleTitle">Legislators</h3>
+        <p class="tip">Click on a district to view corresponding legislators.</p>
+
+        <div class="sixCol colLtSm" id="maptip">
+            <div class="mapbox" id="mapbox-ca" style="width: 100%; height: 400px"></div>
+            <span id="mbtooltip-ca"></span>
+        </div>
+
+        <div class="sixCol colLtSm centeredText bottomDash" id="totalLeg">
+            <ul class="inlineHalves">
+                
+                 <li class="withDash">
+                    <a href="/ca/legislators/?chamber=upper">
+                        <h4 class="titleNumber bigNumber withTip">40<span>Senators</span></h4>
+                    </a>
+                    <ul class="tip noSpace">
+                        
+                        <li>28 Democrats</li>
+                        
+                        <li>12 Republicans</li>
+                        
+                    </ul>
+                 </li>
+                 
+                 <li class="withDash">
+                    <a href="/ca/legislators/?chamber=lower">
+                        <h4 class="titleNumber bigNumber withTip">80<span>Assemblymembers</span></h4>
+                    </a>
+                    <ul class="tip noSpace">
+                        
+                        <li>55 Democrats</li>
+                        
+                        <li>25 Republicans</li>
+                        
+                    </ul>
+                 </li>
+                 
+
+                 
+                 
+            </ul>
+        </div>
+
+        <div class="sixCol colRt">
+            <div id="results_table"> </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+
+
+
+
+
+
+    
+    
+    <div class="fullWidth module clearfix">
+        <h3 class="moduleTitle">Committees</h3>
+            
+                <ul class="inlineThirds centeredText">
+            
+
+            
+                <a href="/ca/committees/?chamber=upper">
+                <li class="one titleNumber bigNumber withTip">
+                55<span>Senate Committees</span></li>
+                </a>
+            
+                <a href="/ca/committees/?chamber=lower">
+                <li class="two titleNumber bigNumber withTip">
+                77<span>Assembly Committees</span></li>
+                </a>
+            
+            
+            <a href="/ca/committees/?chamber=joint">
+                <li class="three titleNumber bigNumber withTip">7<span>Joint Committees</span></li>
+            </a>
+            
+        </ul>
+    </div>
+    
+
+
+<!-- bills -->
+    <div class="fullWidth moduleNoBorder clearfix">
+        <h3 class="moduleTitle">Bills</h3>
+        
+            
+            <div class="module clearfix">
+                
+                    <h3 class="clear">Senate</h3>
+                
+                <div class="fiveCol colLt">
+                    
+
+
+
+<span style="float: right"><a class="rssIcon" href="/ca/bills/feed/?status=passed_upper&sort=passed_upper"></a></span>
+<h5>Recently Passed</h5>
+
+    <ul>
+    
+        <li class="voteChart">
+            
+                <time class="published" datetime="2013-09-12">
+                September 12, 2013
+                </time>
+            
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/SR20/">SR 20</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000041/bill-emmerson/">Bill Emmerson</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to trade relations with Europe</h6>
+        </li>
+    
+        <li class="voteChart">
+            
+                <time class="published" datetime="2013-09-11">
+                September 11, 2013
+                </time>
+            
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/SCR53/">SCR 53</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000102/ted-gaines/">Ted Gaines</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to the Shawn Baker and Robert Jones Memorial Highways.</h6>
+        </li>
+    
+    </ul>
+    <a class="viewMore" href="/ca/bills/?status=passed_upper">
+        
+            
+            View More Passed Senate Bills
+            
+        
+    </a>
+
+
+                </div>
+                <div class="fiveCol colRt">
+                    
+
+
+
+<span style="float: right"><a class="rssIcon" href="/ca/bills/feed/?chamber=upper&sort=first"></a></span>
+<h5>Recently Introduced</h5>
+
+    <ul>
+    
+        <li class="voteChart">
+            <time class="published" datetime="2013-09-12">September 12, 2013</time>
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/SCR72/">SCR 72</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000034/alex-padilla/">Alex Padilla</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to the David M. Gonzales Medal of Honor World War II Memorial Interchange.</h6>
+        </li>
+    
+        <li class="voteChart">
+            <time class="published" datetime="2013-09-11">September 11, 2013</time>
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/SR20/">SR 20</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000041/bill-emmerson/">Bill Emmerson</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to trade relations with Europe</h6>
+        </li>
+    
+    </ul>
+    <a class="viewMore" href="/ca/bills/?chamber=upper">
+        
+            
+            View More Senate Bills
+            
+        
+    </a>
+
+
+                </div>
+            </div>
+        
+            
+            <div class="module clearfix">
+                
+                    <h3 class="clear">Assembly</h3>
+                
+                <div class="fiveCol colLt">
+                    
+
+
+
+<span style="float: right"><a class="rssIcon" href="/ca/bills/feed/?status=passed_lower&sort=passed_lower"></a></span>
+<h5>Recently Passed</h5>
+
+    <ul>
+    
+        <li class="voteChart">
+            
+                <time class="published" datetime="2013-09-12">
+                September 12, 2013
+                </time>
+            
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/ACR82/">ACR 82</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000149/richard-pan/">Richard Pan</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to food allergy awareness.</h6>
+        </li>
+    
+        <li class="voteChart">
+            
+                <time class="published" datetime="2013-09-10">
+                September 10, 2013
+                </time>
+            
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/ACR81/">ACR 81</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000161/holly-mitchell/">Holly Mitchell</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to Senior Fraud Awareness Day.</h6>
+        </li>
+    
+    </ul>
+    <a class="viewMore" href="/ca/bills/?status=passed_lower">
+        
+            
+            View More Passed Assembly Bills
+            
+        
+    </a>
+
+
+                </div>
+                <div class="fiveCol colRt">
+                    
+
+
+
+<span style="float: right"><a class="rssIcon" href="/ca/bills/feed/?chamber=lower&sort=first"></a></span>
+<h5>Recently Introduced</h5>
+
+    <ul>
+    
+        <li class="voteChart">
+            <time class="published" datetime="2013-09-06">September 06, 2013</time>
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/ACR82/">ACR 82</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000149/richard-pan/">Richard Pan</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to food allergy awareness.</h6>
+        </li>
+    
+        <li class="voteChart">
+            <time class="published" datetime="2013-09-03">September 03, 2013</time>
+            <span class="inlineTitle h4 withTip"><a href="/ca/bills/20132014/HR26/">HR 26</a>
+                <div class="clear"></div>
+                <span class="sideNote">
+                     
+                    Sponsored by:
+                    
+                        <a href="/ca/legislators/CAL000157/das-williams/">Das Williams</a>
+                    
+                     
+                </span>
+            </span>
+            <h6 class="clear">Relative to student loan forgiveness.</h6>
+        </li>
+    
+    </ul>
+    <a class="viewMore" href="/ca/bills/?chamber=lower">
+        
+            
+            View More Assembly Bills
+            
+        
+    </a>
+
+
+                </div>
+            </div>
+        
+    </div>
+
+    <div class="fullWidth module">
+        <h3 class="moduleTitle">Available Sessions</h3>
+        <table>
+            <thead> <tr> <th>Session</th> <th>Bills</th> </tr> </thead>
+            <tbody>
+                
+                
+                    <tr class="odd">
+                       <td>2009-2010 Regular Session</td>
+                       <td><a href="/ca/bills/?session=20092010">4690 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="even">
+                       <td>2009-2010, 1st Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 1">31 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="odd">
+                       <td>2009-2010, 2nd Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 2">27 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="even">
+                       <td>2009-2010, 3rd Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 3">146 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="odd">
+                       <td>2009-2010, 4th Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 4">71 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="even">
+                       <td>2009-2010, 5th Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 5">16 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="odd">
+                       <td>2009-2010, 6th Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 6">36 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="even">
+                       <td>2009-2010, 7th Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 7">25 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="odd">
+                       <td>2009-2010, 8th Special Session</td>
+                       <td><a href="/ca/bills/?session=20092010 Special Session 8">116 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="even">
+                       <td>2011-2012, 1st Special Session</td>
+                       <td><a href="/ca/bills/?session=20112012 Special Session 1">79 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="odd">
+                       <td>2011-2012 Regular Session</td>
+                       <td><a href="/ca/bills/?session=20112012">4630 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="even">
+                       <td>2013-2014 Regular Session</td>
+                       <td><a href="/ca/bills/?session=20132014">2513 bills</a></td>
+                   </tr>
+                
+                
+                
+                    <tr class="odd">
+                       <td>2013-2014, 1st Special Session</td>
+                       <td><a href="/ca/bills/?session=20132014 Special Session 1">10 bills</a></td>
+                   </tr>
+                
+                
+        </table>
+    </div>
+
+    
+
+
+<div class="sources fullWidth module">
+    <h4 class="withTip">Sources</h4>
+    
+    <p class="tip sourceTip">
+    Data on Open States is automatically collected nightly from the official website of
+    
+    the <a href="http://www.legislature.ca.gov/">California State Legislature</a>.
+    
+    If you notice any errors, feel free to <a href="/contact/">contact us</a>.
+    </p>
+    
+    <ul>
+        
+    </ul>
+    <div class="clear"></div>
+</div>
+
+
+
+<!-- mapbox interaction script -->
+<script>
+    var lower_url = 'http://a.tiles.mapbox.com/v3/sunlight.map-1c9njt8o,sunlight.calower.jsonp';
+    var upper_url = 'http://a.tiles.mapbox.com/v3/sunlight.map-1c9njt8o,sunlight.caupper.jsonp';
+    var minMaxZooms = {
+        'ak': [3, 11],
+        'al': [6, 14],
+        'ar': [6, 14],
+        'az': [6, 13],
+        'ca': [5, 13],
+        'co': [6, 13],
+        'ct': [8, 15],
+        'dc': [11, 17],
+        'de': [8, 15],
+        'fl': [6, 13],
+        'ga': [6, 14],
+        'hi': [6, 12],
+        'ia': [6, 14],
+        'id': [5, 12],
+        'il': [6, 14],
+        'in': [6, 14],
+        'ks': [6, 14],
+        'ky': [6, 13],
+        'la': [6, 14],
+        'ma': [7, 15],
+        'md': [7, 14],
+        'me': [6, 13],
+        'mi': [6, 13],
+        'mn': [6, 13],
+        'mo': [6, 13],
+        'ms': [6, 14],
+        'mt': [5, 13],
+        'nc': [6, 14],
+        'nd': [6, 13],
+        'ne': [6, 13],
+        'nh': [7, 15],
+        'nj': [7, 15],
+        'nm': [6, 13],
+        'nv': [6, 13],
+        'ny': [6, 13],
+        'oh': [6, 14],
+        'ok': [6, 13],
+        'or': [6, 13],
+        'pa': [6, 14],
+        'pr': [7, 15],
+        'ri': [8, 15],
+        'sc': [7, 14],
+        'sd': [6, 13],
+        'tn': [6, 14],
+        'tx': [5, 12],
+        'ut': [6, 13],
+        'va': [6, 14],
+        'vt': [7, 14],
+        'wa': [6, 13],
+        'wi': [6, 13],
+        'wv': [6, 14],
+        'wy': [6, 13],
+    };
+    var mmzoom = minMaxZooms['ca'];
+    if(!mmzoom) {
+        mmzoom = [5, 12];
+    }
+    var map = new L.Map('mapbox-ca',
+            {attributionControl:true, minZoom: mmzoom[0], maxZoom: mmzoom[1]});
+    var layersControl = new L.Control.Layers(null, null, {collapsed: false});
+    var marker;
+
+    // check if state is in oneMapStates
+    var oneMap = ['nj', 'dc', 'ne', 'az', 'id', 'wa'].indexOf('ca') !== -1;
+
+    map.attributionControl.setPrefix('');
+
+    if(!oneMap) {
+        map.addControl(layersControl);
+    }
+
+    var wax_cb = function(tilejson) {
+        // add to map
+        var layer = new wax.leaf.connector(tilejson);
+        map.addLayer(layer);
+        map.setView(new L.LatLng(tilejson.center[1], tilejson.center[0]),
+                    mmzoom[0]);
+
+        // add to control
+        var layerName;
+        if (tilejson.grids[0].indexOf('lower') != -1) {
+            layerName = 'lower';
+        } else {
+            layerName = 'upper';
+        }
+        layersControl.addBaseLayer(layer, layerName);
+
+        // add events
+        var container = $('#mbtooltip-ca')[0];
+        var events = {};
+        events.on = function(arg) {
+            var selLayer = $('input[name="leaflet-base-layers"]:checked').parent().text().trimLeft();
+            if (selLayer === layerName) {
+                container.innerHTML = arg.data.NAMELSAD;
+            }
+        }
+        events.off = function(arg) {
+            var selLayer = $('input[name="leaflet-base-layers"]:checked').parent().text().trimLeft();
+            if (selLayer === layerName) {
+                container.innerHTML = "";
+            }
+        }
+        wax.leaf.interaction().map(map).tilejson(tilejson).on(events);
+    }
+    wax.tilejson(upper_url, wax_cb);
+    if(!oneMap) {
+        wax.tilejson(lower_url, wax_cb);
+    }
+    map.on('click', function(e) {
+        var url = '/find_your_legislator/?abbr=ca&lat=' + e.latlng.lat + '&lon=' + e.latlng.lng;
+        $("#results_table").load(url);
+
+        // create or move marker
+        if (!marker) {
+            marker = new L.Marker(e.latlng);
+            map.addLayer(marker);
+        } else {
+            marker.setLatLng(e.latlng);
+        }
+    });
+</script>
+
+
+
+    </div>
+
+    <div id="footerWrapper">
+        <footer>
+            <div id="footerLt">
+                <a class="textReplace" id="sunlight" href="http://www.sunlightfoundation.com">Sunlight Foundation</a>
+                <p>Our <a href="http://sunlightfoundation.com/legal/privacy/">privacy policy</a> details how personally identifiable information that is collected on our websites is handled. Read our <a href="http://sunlightfoundation.com/legal/terms/">terms of service</a>.</p>
+                <p>This work by <a href="http://sunlightfoundation.com">Sunlight Foundation</a>, unless <a href="/about/">otherwise noted</a>, is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.</p>
+            </div>
+            <div id="footerRt">
+                <div id="recources">
+                    <h4 class="footerheaders">Resources </h4>
+                    <dl class="inlineList">
+                        <dt class="clear">Reach Out to Us:</dt>
+                        <dd>
+                            <ul>
+                                <li><a href="/about/">About Open States</a></li>
+                               <li><a href="/contact/">Contact Us</a></li>
+                               <li><a href="https://twitter.com/openstates">@openstates</a></li>
+                            </ul>
+                        </dd>
+                        <dt>Use Our Data:</dt>
+                        <dd>
+                            <ul>
+                                <li><a href="http://sunlightlabs.github.io/openstates-api/">API</a></li>
+                                <li><a href="/downloads/">Bulk Downloads</a></li>
+                                <li><a href="http://python-sunlight.readthedocs.org/">Python Client Library</a></li>
+                                <li><a href="http://code.google.com/p/openstates/issues/list">Issue Tracker</a></li>
+                            </ul>
+                        </dd>
+                        <dt class="clear">Contribute:</dt>
+                        <dd>
+                            <ul>
+                                <li><a href="/contributing/">Contributor&rsquo;s Guide</a></li>
+                                <li><a href="http://github.com/sunlightlabs/openstates/">Code on GitHub</a></li>
+                                <li><a href="http://readthedocs.org/docs/billy/en/latest/scrapers.html">Writing Scrapers</a></li>
+                            </ul>
+                        </dd>
+
+
+                    </dl>
+                </div>
+                <h4 class="withTip footerheaders noCap">Like This Project and Want to Discover Others Like It?</h4>
+                <span class="tip">Join the Sunlight Foundation&rsquo;s open government community to learn more</span>
+                <form action="http://organizing.sunlightfoundation.com/page/s/open-states" method="post" id="submit">
+                    <input type="text" name="email" placeholder="your email address">
+                    <input type="text" name="zip" placeholder="your zip code">
+                    <button type="submit">
+                        <span>SignUp</span>
+                    </button>
+                </form>
+            </div>
+        </footer>
+    </div>
+
+<script>
+  /* chartbeat */
+  var _sf_async_config = { uid: 980, domain: 'openstates.org' };
+  (function() {
+    function loadChartbeat() {
+      window._sf_endpt = (new Date()).getTime();
+      var e = document.createElement('script');
+      e.setAttribute('language', 'javascript');
+      e.setAttribute('type', 'text/javascript');
+      e.setAttribute('src',
+        (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+        "js/chartbeat.js");
+      document.body.appendChild(e);
+    };
+    var oldonload = window.onload;
+    window.onload = (typeof window.onload != 'function') ?
+      loadChartbeat : function() { oldonload(); loadChartbeat(); };
+  })();
+</script>
+</body>

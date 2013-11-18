@@ -1,3 +1,7 @@
 Images dir:
 
 http://static.openstates.org/assets/v3.1/images/bg_sunlightLogo.png
+
+http://ping.chartbeat.net/ping?h=openstates.org&p=%2Ffind-cal-legies%2F%3Fleg_search%3D3672%2B45th%2BSt.%2BSan%2BDiego%252C%2BCA&u=b8dqvcd55vz6x09z&d=localhost&g=980&n=0&f=00001&c=0.25&x=0&y=1396&o=971&w=151&j=30&R=1&W=0&I=0&E=6&e=6&b=2387&t=njxi1dkpvz18hf5d&V=16&_
+
+http://localhost/find-cal-legies/find_your_legislator/?leg_search=3672+45th+St.+San+Diego%2C+CA
